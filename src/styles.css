@@ -1,0 +1,108 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+.barra-busqueda{
+  padding: 1%;
+  border-radius: 30px;
+  width: 30%;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  width: 100%;
+}
+.cadauno{
+  margin-top: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.user-card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  text-align: left;
+  width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.user-card:hover {
+  transform: scale(1.05);
+}
+
+.user-card img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 16px;
+}
+
+.user-card h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.user-card p {
+  margin: 4px 0;
+  color: #555;
+}
+
+.user-details {
+  background-color: #fff;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-details button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.user-details button:hover {
+  background-color: #0056b3;
+}
+
+.user-details img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 16px;
+}
+
+.user-details h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+
+.user-details p {
+  margin: 4px 0;
+  color: #555;
+}
