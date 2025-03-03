@@ -2,7 +2,7 @@
 
 Plazo máximo de entrega: lunes 3 de marzo, 5:00 a.m. 
 
-el objetivo del proyecto es evaluar los conocimientos en React (frontend), Node.js (backend), Oracle (base de  datos) y el manejo de versiones con GitLab, así como la capacidad lógica y de resolución  de problemas del candidato.
+El objetivo del proyecto es evaluar los conocimientos en React (frontend), Node.js (backend), Oracle (base de  datos) y el manejo de versiones con GitLab, así como la capacidad lógica y de resolución  de problemas del candidato.
 
 
 
@@ -61,22 +61,35 @@ Abre tu navegador y ve a http://localhost:3000
 
 
 
-## Explicacion del Programa
+## Explicación del Programa
 
 #### Backend
 
-1. Primeramente se inicia el servidor usando Express para manejar las solicitudes
+1. Principalmente, se inicia el servidor usando Express para manejar las solicitudes.
 
-2. luego se comunica con la aplicacion frontend mediante CORS
-3. se define un endpoint /api/usuarios para que pueda realizar la solicitud de los datos de los 25 usuarios
-4. se hace una solicitud GET a la API para obtener los datos
-5. evalua que no hay fallos al comunicarse con la API y al obtener los datos, en caso de que existan, se comunica al usuario en consola con un mensaje de error
+2. Paso seguido, se comunica con la aplicación frontend mediante CORS.
+
+3. Se define un endpoint /api/usuarios para que pueda realizar la solicitud de datos de los 25 usuarios.
+
+4. Se realiza una solicitud GET a la API para obtener los datos.
+
+5. Evalúa que no hay fallos al comunicarse con la API y al obtener los datos, en caso de que existan, se comunica al usuario en consola con un mensaje de error.
 
 #### Frontend
 
-1. Maneja diferentes componentes como la barra de busqueda, la lista de usuarios, las cartas con la informacion de los usuarios y los detalles que se van a mostrar cuando se seleccione un usuario
-2. se obtiene la lista de usuarios de el backend mediante un GET
-3. al seleccionar un usuario, este se guarda y se solicitan todos los detalles para mostrarlos inmediatamente al usuario, mostrando un nuevo componente y permite ocultarlo nuevamente con el boton de back
+1. Maneja diferentes componentes como:
+
+   * Barra de búsqueda.
+
+   * Lista de usuarios.
+
+   * Cartas con información de los usuarios y detalles que se van a mostrar cuando sea seleccionado un usuario.
+
+2. Se obtiene la lista de usuarios del backend mediante un GET.
+
+3. Al seleccionar un usuario, este se guarda y  solicita todos los detalles proyectando de  inmediato en la ejecución, muestra un nuevo componente y permite ocultarlo con el botón “back”.
+
+
 
 <img src="completo.png" style="zoom: 33%;" />
 
@@ -188,15 +201,3 @@ CALL ObtenerUsuario(1);
 
 
 
-
-
-## Parte 3: Manejo de Versiones (GitLab) - Entregables 
-
-
-
-- Crear un repositorio público en GitLab con el código de la aplicación web  (frontend y backend) y los scripts de la base de datos.  
-  - Realizar commits significativos que muestren el progreso del desarrollo.  
-  - Incluir un README.md en el repositorio con: 
-    - Instrucciones para ejecutar el proyecto (frontend, backend). Instalación  de dependencias y más.  
-    - Explicación breve de la estructura del proyecto.  
-    - Capturas de pantalla de la aplicación funcionando. (Extra) 
