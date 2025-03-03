@@ -2,6 +2,8 @@
 
 Plazo máximo de entrega: lunes 3 de marzo, 5:00 a.m. 
 
+el objetivo del proyecto es evaluar los conocimientos en React (frontend), Node.js (backend), Oracle (base de  datos) y el manejo de versiones con GitLab, así como la capacidad lógica y de resolución  de problemas del candidato.
+
 
 
 ## Dependencias del Proyecto
@@ -19,6 +21,8 @@ Plazo máximo de entrega: lunes 3 de marzo, 5:00 a.m.
 - **Axios**: Cliente HTTP para realizar solicitudes a la API externa.
 
 - **Cors**: Middleware para habilitar CORS (Cross-Origin Resource Sharing).
+
+
 
 ## Ejecución del Programa
 
@@ -42,14 +46,14 @@ npm install express axios cors
 node server.js
 ```
 
-4. **Iniciar** la aplicacion frontend
+4. **Iniciar** la aplicación frontend
 
 ```bash
 cd my-react-app
 npm start
 ```
 
-5. **Acceder** a la aplicacion
+5. **Acceder** a la aplicación
 
 ```
 Abre tu navegador y ve a http://localhost:3000
@@ -57,91 +61,134 @@ Abre tu navegador y ve a http://localhost:3000
 
 
 
-### Objetivo 
+## Explicacion del Programa
 
-Evaluar los conocimientos en React (frontend), Node.js (backend), Oracle (base de  datos) y el manejo de versiones con GitLab, así como la capacidad lógica y de resolución  de problemas del candidato. La prueba consta de tres partes:
+#### Backend
+
+1. Primeramente se inicia el servidor usando Express para manejar las solicitudes
+
+2. luego se comunica con la aplicacion frontend mediante CORS
+3. se define un endpoint /api/usuarios para que pueda realizar la solicitud de los datos de los 25 usuarios
+4. se hace una solicitud GET a la API para obtener los datos
+5. evalua que no hay fallos al comunicarse con la API y al obtener los datos, en caso de que existan, se comunica al usuario en consola con un mensaje de error
+
+#### Frontend
+
+1. Maneja diferentes componentes como la barra de busqueda, la lista de usuarios, las cartas con la informacion de los usuarios y los detalles que se van a mostrar cuando se seleccione un usuario
+2. se obtiene la lista de usuarios de el backend mediante un GET
+3. al seleccionar un usuario, este se guarda y se solicitan todos los detalles para mostrarlos inmediatamente al usuario, mostrando un nuevo componente y permite ocultarlo nuevamente con el boton de back
+
+![](src\images\Captura de pantalla 2025-03-02 193425.png)
+
+![](src\images\Captura de pantalla 2025-03-02 193544.png)
+
+![](src\images\Captura de pantalla 2025-03-02 193722.png)
+
+## Bases de datos
+
+![](PARTE 2 BASES DE DATOS\Diagram 1.png)
+
+1. #### Creación de tablas
+
+```sql
+CREATE TABLE USUARIOS (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    NOMBRE VARCHAR(100) NOT NULL,
+    CORREO VARCHAR(50) NOT NULL UNIQUE,
+    PAIS VARCHAR(50),
+    FOTO VARCHAR(255)
+);
+```
+
+```sql
+CREATE TABLE DIRECCIONES (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    USUARIO_ID INT,
+    CALLE VARCHAR(100),
+    CIUDAD VARCHAR(50),
+    ESTADO VARCHAR(50),
+    CODIGO_POSTAL VARCHAR(20),
+    FOREIGN KEY (USUARIO_ID) REFERENCES USUARIOS(ID)
+);
+```
 
 
 
-1. Desarrollo de un aplicativo web que consuma la API pública  RandomUser API.  2. Ejercicios en Oracle sobre relacionamiento entre tablas y creación de  objeto  3. Manejo de versiones con Git 
-2. Ejercicios en Oracle sobre relacionamiento entre tablas y creación de  objeto
-3. Manejo de versiones con Git 
+2. #### Relacionamiento y Consultas
+
+- Insertar 5 registros en la tabla USUARIOS y 5 registros en la tabla DIRECCIONES,  asegurando que cada dirección esté relacionada con un usuario. 
+
+```sql
+INSERT INTO USUARIOS (NOMBRE, CORREO, PAIS, FOTO) VALUES
+('Juan Pérez', 'jjperez983@gmail.com', 'Colombia', 'https://th.bing.com/th/id/OIP.NqlzjzgzfHI046FjmPZkogHaEK?w=280&h=180&c=7&r=0&o=5&pid=1.7'),
+('María García', 'maria.garcia@hotmail.com', 'México', 'https://d-art.ppstatic.pl/kadry/k/r/1/52/e0/66546aef0ff6c_o_large.jpg'),
+('Carlos López', 'carlop@ejemplo.com', 'España', 'https://th.bing.com/th/id/OIP.1XmctktVAucZaVUCyVV6hAHaE8?rs=1&pid=ImgDetMain'),
+('Ana Martínez', 'amartinez@yahoo.com', 'Argentina', 'https://th.bing.com/th/id/OIP.Q8r6v--dGhDJ_SS_8ZLZRQHaFj?rs=1&pid=ImgDetMain'),
+('Luisa Fernández', 'luisa2615@icloud.com', 'Chile', 'https://th.bing.com/th/id/OIP.6iU-Wz-BqHQXV5IW4g9QnAHaEK?rs=1&pid=ImgDetMain');
+```
+
+```sql
+INSERT INTO DIRECCIONES (USUARIO_ID, CALLE, CIUDAD, ESTADO, CODIGO_POSTAL) VALUES
+(1, 'Calle 123', 'Bogotá', 'Cundinamarca', '110111'),
+(2, 'Avenida Revolución', 'Ciudad de México', 'CDMX', '01000'),
+(3, 'Calle Gran Vía', 'Madrid', 'Madrid', '28013'),
+(4, 'Avenida de Mayo', 'Buenos Aires', 'Buenos Aires', '1084'),
+(5, 'Calle Providencia', 'Santiago', 'Santiago', '7500000');
+```
+
+- Escribir una consulta SQL que devuelva el nombre del usuario, su correo y su  dirección completa (calle, ciudad, estado y código postal).  
+
+```sql
+SELECT 
+    USUARIOS.NOMBRE, 
+    USUARIOS.CORREO, 
+    DIRECCIONES.CALLE, 
+    DIRECCIONES.CIUDAD, 
+    DIRECCIONES.ESTADO, 
+    DIRECCIONES.CODIGO_POSTAL
+FROM 
+    USUARIOS
+INNER JOIN 
+    DIRECCIONES ON USUARIOS.ID = DIRECCIONES.USUARIO_ID;
+```
+
+- Crear una vista llamada VW_USUARIOS_CON_DIRECCIONES que muestre el nombre  del usuario, su correo y su dirección completa. 
+
+```sql
+CREATE VIEW VW_USUARIOS_CON_DIRECCIONES AS
+SELECT 
+    USUARIOS.NOMBRE, 
+    USUARIOS.CORREO, 
+    DIRECCIONES.CALLE, 
+    DIRECCIONES.CIUDAD, 
+    DIRECCIONES.ESTADO, 
+    DIRECCIONES.CODIGO_POSTAL
+FROM 
+    USUARIOS
+INNER JOIN 
+    DIRECCIONES ON USUARIOS.ID = DIRECCIONES.USUARIO_ID;
+```
+
+- Crear un procedimiento almacenado que reciba como parámetro el ID de un  usuario y devuelva su nombre, correo y país.  
+
+```sql
+DELIMITER //
+CREATE PROCEDURE ObtenerUsuario(
+    IN usuario_id INT
+)
+BEGIN
+    SELECT NOMBRE, CORREO, PAIS
+    FROM USUARIOS
+    WHERE ID = usuario_id;
+END //
+DELIMITER ;
+
+CALL ObtenerUsuario(1);
+```
 
 
 
-## PARTE 1: Aplicación Web
 
-
-
-1. #### Frontend (React): 
-
-   - Crear una interfaz que muestre una lista de usuarios obtenidos de la API  RandomUser (https://randomuser.me/api/?results=25). 
-   - Cada usuario debe mostrarse con su nombre, correo electrónico, foto y  nacionalidad.  
-   - Crear una vista adicional donde se muestren los detalles completos de un  usuario.   
-   - Implementar un buscador que permita filtrar usuarios por nombre o país.  
-   - Usar componentes funcionales y hooks (useState, useEffect, etc.).  
-   - Estilizar la aplicación usando CSS o alguna librería como Material-UI o  TailwindCSS. 
-
-Extras (opcional, pero valorado)
-
-- Implementar manejo de estados con React Redux  
-
-- Usar React Router para el enrutamiento de las vistas 
-
-  
-
-2. #### Backend (Node.js + Express): 
-
-   - Crear un servidor en Node.js que actúe como intermediario entre el frontend  y la API de RandomUser.  
-   - El servidor debe exponer un endpoint /api/users que devuelva los datos de  los 25 (n) usuarios  
-   - Implementar manejo de errores 
-
-   Extras (opcional, pero valorado)  
-
-   - Manejo de autenticación con JWT. 
-   - Implementar middleware para el manejo de errores y logs 
-
-   
-
-## Parte 2: Base de Datos (Oracle)
-
-
-
-1. #### Creación de Tablas: 
-
-   - Crear una tabla USUARIOS con los siguientes campos:  
-
-     - ID (clave primaria, autoincremental)  
-     - NOMBRE (nombre completo del usuario)  
-     - CORREO (correo electrónico)  
-     - PAIS (país del usuario)  
-     - FOTO (URL de la foto del usuario) 
-
-   - Crear una tabla DIRECCIONES con los siguientes campos:  
-
-     - ID (clave primaria, autoincremental)  
-     - USUARIO_ID (clave foránea que referencia a USUARIOS.ID)  
-     - CALLE (nombre de la calle)  
-     - CIUDAD (ciudad)  
-     - ESTADO (estado)  
-     - CODIGO_POSTAL (código postal) 
-
-     
-
-2. #### Relacionamiento y Consultas: 
-
-   - Insertar 5 registros en la tabla USUARIOS y 5 registros en la tabla DIRECCIONES,  asegurando que cada dirección esté relacionada con un usuario.  
-   - Escribir una consulta SQL que devuelva el nombre del usuario, su correo y su  dirección completa (calle, ciudad, estado y código postal).  
-   - Crear una vista llamada VW_USUARIOS_CON_DIRECCIONES que muestre el nombre  del usuario, su correo y su dirección completa. 
-
-   
-
-3. #### Objetos de Base de Datos: (Extras, pero valorados) 
-
-   - Crear un procedimiento almacenado que reciba como parámetro el ID de un  usuario y devuelva su nombre, correo y país.  
-   - Crear un trigger que, al insertar un nuevo usuario en la tabla USUARIOS, registre en  una tabla de auditoría (AUDITORIA_USUARIOS) la fecha y hora de la inserción. 
-
-   
 
 ## Parte 3: Manejo de Versiones (GitLab) - Entregables 
 
