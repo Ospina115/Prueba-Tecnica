@@ -78,15 +78,15 @@ Abre tu navegador y ve a http://localhost:3000
 2. se obtiene la lista de usuarios de el backend mediante un GET
 3. al seleccionar un usuario, este se guarda y se solicitan todos los detalles para mostrarlos inmediatamente al usuario, mostrando un nuevo componente y permite ocultarlo nuevamente con el boton de back
 
-![](src\images\Captura de pantalla 2025-03-02 193425.png)
+<img src="completo.png" style="zoom: 33%;" />
 
-![](src\images\Captura de pantalla 2025-03-02 193544.png)
+<img src="busqueda.png" style="zoom:50%;" />
 
-![](src\images\Captura de pantalla 2025-03-02 193722.png)
+<img src="detalles.png" style="zoom:50%;" />
 
 ## Bases de datos
 
-![](PARTE 2 BASES DE DATOS\Diagram 1.png)
+<img src="Diagram 1.png" style="zoom:25%;" />
 
 1. #### Creación de tablas
 
